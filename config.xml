@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<settings>
+    <prod>https://www.magnumicecream.com/br/home.html</prod>
+    <uat>https://magnumicecream-com-uat-aemcs.unileversolutions.com/br/home.html</uat>
+    <uatcred>https://unileveraemcs:Un1l2v2r@A3mcs@magnumicecream-com-uat-aemcs.unileversolutions.com/br/home.html</uatcred>
+</settings>
