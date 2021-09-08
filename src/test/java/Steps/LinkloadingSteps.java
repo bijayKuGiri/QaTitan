@@ -1,12 +1,11 @@
 package Steps;
 
 import Base.BaseUtilities;
-import com.unilever.Pages.Helper;
-import com.unilever.Pages.Home;
+import Utility.Helper;
+import Pages.Home;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.xml.sax.SAXException;
 
@@ -29,8 +28,8 @@ public class LinkloadingSteps extends BaseUtilities {
 
     @Given("The site is Up and Running")
     public void the_site_is_up_and_running() throws ParserConfigurationException, IOException, SAXException {
-        Helper helper=new Helper();
-        helper.NavigateToUAT(_driver);
+        //Helper. helper=new Helper();
+        Helper.NavigateToUAT(_driver);
         _home=new Home(_driver);
         System.out.println("Given");
 
@@ -45,11 +44,7 @@ public class LinkloadingSteps extends BaseUtilities {
 
         System.out.println("Then");
         for (String var : linkTxt) {
-
             _driver.get(var);
-
-
-
         }
 
     }
