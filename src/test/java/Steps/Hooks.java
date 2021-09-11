@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 
-public class Hooks extends BaseUtilities{
+public class Hooks extends BaseUtilities {
 
     private BaseUtilities utils;
     private RemoteWebDriver _driver;
@@ -38,6 +38,13 @@ public class Hooks extends BaseUtilities{
         if(browser==Browsertype.CHROME) {
             System.setProperty("webdriver.chrome.driver", ".\\src\\main\\resources\\chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
+            options.addArguments("enable-automation");
+            //options.addArguments("--headless");
+            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-extensions");
+            options.addArguments("--dns-prefetch-disable");
+            options.addArguments("--disable-gpu");
             options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
             _driver = new ChromeDriver(options);
             _driver.manage().window().maximize();
