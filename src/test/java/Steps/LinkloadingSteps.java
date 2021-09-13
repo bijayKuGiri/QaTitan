@@ -14,6 +14,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+
+
 public class LinkloadingSteps extends BaseUtilities {
 
     private BaseUtilities base;
@@ -40,11 +46,19 @@ public class LinkloadingSteps extends BaseUtilities {
         linkTxt=_home.getLinktext();
     }
     @Then("All the header link should load within {int} second")
-    public void all_the_header_link_should_load_within_second(Integer timeinSecond) {
-
+    public void all_the_header_link_should_load_within_second(Integer timeSecond) {
+        SoftAssert softAssert=new SoftAssert();
         System.out.println("Then");
         for (String var : linkTxt) {
+
+            long start = System.currentTimeMillis();
             _driver.get(var);
+
+            long finish = System.currentTimeMillis();
+            long totalTime = finish - start;
+            System.out.println("The Url is "+var);
+            softAssert.assertTrue((0.001*totalTime) <= timeSecond,"Page should load within " +timeSecond);
+            System.out.println("Loading time is ..."+(0.001*totalTime));
         }
 
     }

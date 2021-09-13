@@ -36,6 +36,7 @@ public class Hooks extends BaseUtilities {
     public void SelectBrowser(Browsertype browser){
 
         if(browser==Browsertype.CHROME) {
+            System.setProperty("webdriver.chrome.silentOutput","true");
             System.setProperty("webdriver.chrome.driver", ".\\src\\main\\resources\\chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
             options.addArguments("enable-automation");

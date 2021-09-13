@@ -49,6 +49,10 @@ public class Home{
     @FindBy(css="div.cmp-carousel__content")
     WebElement carouselContent;
 
+
+    @FindBy(xpath="//div[@class='container responsivegrid']//span[@class='cmp-list__item-title'][1]")
+    WebElement contactUs;
+
     public List<WebElement> getCarouselList(){
         return carouselContent
                 .findElements(By.xpath("//div[@class='cmp-carousel__content']/div[contains(@id,'carousel')]"));
@@ -91,7 +95,10 @@ public class Home{
         ImageIO.write(screenshot.getImage(),"PNG",new File(System.getProperty("user.dir") +"Logo.png"));
         Thread.sleep(2000);
     }
-
+    public ContactUs navContactUs(){
+        contactUs.click();
+        return new ContactUs(driver);
+    }
 
 
 
