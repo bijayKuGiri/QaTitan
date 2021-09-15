@@ -20,6 +20,7 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.util.Set;
 
 
 public class Home{
@@ -49,9 +50,20 @@ public class Home{
     @FindBy(css="div.cmp-carousel__content")
     WebElement carouselContent;
 
+    @FindBy(xpath="//footer//div[@class='container responsivegrid'][1]")
+    WebElement footerContainer;
 
     @FindBy(xpath="//div[@class='container responsivegrid']//span[@class='cmp-list__item-title'][1]")
     WebElement contactUs;
+
+
+    @FindBy(xpath="//footer//a[@class='cmp-button' and contains(@href,'facebook')]")
+    WebElement lnkFacebook;
+
+    @FindBy(xpath="//footer//a[@class='cmp-button' and contains(@href,'twitter')]")
+    WebElement lnkTwitter;
+
+    //p[@class='small']//a/font[string-length(text())>0]
 
     public List<WebElement> getCarouselList(){
         return carouselContent
@@ -79,6 +91,15 @@ public class Home{
         return linkTxt;
     }
 
+    public List<String> getfooterLinktext(){
+        List<String> linkTxt=new ArrayList<String>();
+        List<WebElement> links=footerContainer.findElements(By.tagName("li"));
+        for (WebElement var : links){
+            linkTxt.add(var.findElement(By.tagName("a")).getAttribute("href"));
+        }
+        return linkTxt;
+    }
+
     public String getHeader(){
         return driver.getTitle();
     }
@@ -99,8 +120,25 @@ public class Home{
         contactUs.click();
         return new ContactUs(driver);
     }
+    public RemoteWebDriver navFacebook() throws InterruptedException {
+        lnkFacebook.click();
+        Thread.sleep(5000);
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(1));
+        return driver;
+    }
+    public boolean IsNavigateFacebook(RemoteWebDriver driver) {
+        return driver.getCurrentUrl().contains("facebook.com");
+    }
 
-
-
-
+    public RemoteWebDriver navTwitter() throws InterruptedException {
+        lnkTwitter.click();
+        Thread.sleep(5000);
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(1));
+        return driver;
+    }
+    public boolean IsNavigateTwitter(RemoteWebDriver driver) {
+        return driver.getCurrentUrl().contains("twitter.com");
+    }
 }

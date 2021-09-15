@@ -12,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 public class ContactUs extends Helper {
     private RemoteWebDriver driver;
 
-
     public ContactUs(RemoteWebDriver _driver) {
 
         PageFactory.initElements(_driver,this);
@@ -62,8 +61,14 @@ public class ContactUs extends Helper {
     @FindBy(css = "#commentError>p")
     WebElement lblCommentErr;
 
+    @FindBy(css = "#legalAgeConfirmation_Err>p")
+    WebElement lbllegalConfErr;
+
     public boolean isNameErrorDisplay(){
         return lblfirstnameErr.isDisplayed();
+    }
+    public boolean isLegalAgeErrorDisplay(){
+        return lbllegalConfErr.isDisplayed();
     }
     public boolean isLastNameErrorDisplay(){
         return lblLastnameErr.isDisplayed();
@@ -88,8 +93,10 @@ public class ContactUs extends Helper {
         txtLastName.findElement(By.tagName("input")).sendKeys(lastName);
         txtEmail.findElement(By.tagName("input")).sendKeys(email);
         txtComments.findElement(By.tagName("textarea")).sendKeys(Comments);
+
         Helper.scrollUpPage(driver,1);
-        Helper.click(driver,chkAgeConfirm.findElement(By.tagName("input")));
+        if(!Comments.trim().isEmpty())
+            Helper.click(driver,chkAgeConfirm.findElement(By.tagName("input")));
         Helper.click(driver,btnSubmit);
 
 //        chkAgeConfirm.findElement(By.tagName("input")).click();

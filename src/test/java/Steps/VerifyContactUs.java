@@ -22,37 +22,15 @@ public class VerifyContactUs extends BaseUtilities {
         this.base = base;
         _driver=base._driver;
     }
-//    @When("navigate to contact us page and fill the details")
-//    public void navigateToContactUsPageAndFillTheDetails() throws InterruptedException {
-//        _home=new Home(base._driver);
-//        _contact=_home.navContactUs();
-//        Thread.sleep(5000);
-//
-//        _contact.SelectReason("Question");
-//        //Thread.sleep(5000);
-//        _contact.SelectSubject("Business");
-//        //Thread.sleep(5000);
-//        _contact.enterNameEmailAndComments("Test","Uniliver","test@gmail.com","Testiing purpose");
-//    }
 
-//    @Then("user should able to send the details")
-//    public void userShouldAbleToSendTheDetails() {
-//        System.out.println("Then Section");
-//        Assert.assertTrue(_contact.VerifySuccessContactUS());
-//        System.out.println(_contact.getMessage());
-//    }
 
     @When("navigate to contact us page and fill the details {},{},{} and {}")
     public void navigateToContactUsPageAndFillTheDetailsNameLastnameEmailAndComment(String name,String lastname,
                                                                                     String email,String Comment) throws InterruptedException {
         _home=new Home(base._driver);
         _contact=_home.navContactUs();
-        //Thread.sleep(5000);
-
         _contact.SelectReason("Question");
-        //Thread.sleep(5000);
         _contact.SelectSubject("Business");
-        //Thread.sleep(5000);
         _contact.enterNameEmailAndComments(name,lastname,email,Comment);
 
     }
@@ -75,6 +53,7 @@ public class VerifyContactUs extends BaseUtilities {
                 break;
             case "commentMissing":
                 Assert.assertTrue(_contact.isCommentErrorDisplay());
+                Assert.assertTrue(_contact.isLegalAgeErrorDisplay());
                 break;
             default:
                 System.out.println("No Criteria");

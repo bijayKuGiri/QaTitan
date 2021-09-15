@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -76,4 +78,6 @@ public class Helper {
             Thread.sleep(1000);
         }
     }
+
+
 }

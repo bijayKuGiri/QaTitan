@@ -34,7 +34,6 @@ public class LinkloadingSteps extends BaseUtilities {
 
     @Given("The site is Up and Running")
     public void the_site_is_up_and_running() throws ParserConfigurationException, IOException, SAXException {
-        //Helper. helper=new Helper();
         Helper.NavigateToUAT(_driver);
         _home=new Home(_driver);
         System.out.println("Given");
@@ -50,10 +49,8 @@ public class LinkloadingSteps extends BaseUtilities {
         SoftAssert softAssert=new SoftAssert();
         System.out.println("Then");
         for (String var : linkTxt) {
-
             long start = System.currentTimeMillis();
             _driver.get(var);
-
             long finish = System.currentTimeMillis();
             long totalTime = finish - start;
             System.out.println("The Url is "+var);
