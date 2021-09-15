@@ -57,7 +57,8 @@ public class Helper {
 //            JavascriptExecutor executor = (JavascriptExecutor) driver;
 //            executor.executeScript("arguments[0].click();", element);
 //        }
-
+//        JavascriptExecutor executor = (JavascriptExecutor) driver;
+//        executor.executeScript("arguments[0].scrollIntoView(true);", element);
         Actions action=new Actions(driver);
         action.moveToElement(element).click().perform();
     }

@@ -30,8 +30,9 @@ public class VerifyCookiesNoticeSteps extends BaseUtilities {
     public void i_try_to_click_on_cookies_notice_link() throws InterruptedException {
         _contact.SelectReason("Question");
         _contact.SelectSubject("Business");
-        Thread.sleep(2000);
-        Helper.scrollDownPage(_driver,3);
+        Helper.scrollDownPage(_driver,1);
+        //Thread.sleep(2000);
+        Helper.scrollDownPage(_driver,1);
         _driver=_contact.navCookiesNotice();
     }
     @Then("the page should redirect to CookiesNotice page")
