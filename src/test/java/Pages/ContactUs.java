@@ -9,6 +9,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
+
 public class ContactUs extends Helper {
     private RemoteWebDriver driver;
 
@@ -64,6 +66,15 @@ public class ContactUs extends Helper {
     @FindBy(css = "#legalAgeConfirmation_Err>p")
     WebElement lbllegalConfErr;
 
+    @FindBy(xpath="//p[@class='small']//a[2]/font[string-length(text())>0]")
+    WebElement lnkTermsOfUse;
+
+    @FindBy(xpath="//p[@class='small']//a[1]/font[string-length(text())>0]")
+    WebElement lnkPrivacyNotice;
+
+    @FindBy(xpath="//p[@class='small']//a[3]/font[string-length(text())>0]")
+    WebElement lnkCookiesNotice;
+
     public boolean isNameErrorDisplay(){
         return lblfirstnameErr.isDisplayed();
     }
@@ -92,9 +103,10 @@ public class ContactUs extends Helper {
         txtName.findElement(By.tagName("input")).sendKeys(name);
         txtLastName.findElement(By.tagName("input")).sendKeys(lastName);
         txtEmail.findElement(By.tagName("input")).sendKeys(email);
-        txtComments.findElement(By.tagName("textarea")).sendKeys(Comments);
-
+        if(!Comments.trim().isEmpty())
+            txtComments.findElement(By.tagName("textarea")).sendKeys(Comments);
         Helper.scrollUpPage(driver,1);
+        Helper.downKeyOnPage(driver,2);
         if(!Comments.trim().isEmpty())
             Helper.click(driver,chkAgeConfirm.findElement(By.tagName("input")));
         Helper.click(driver,btnSubmit);
@@ -112,5 +124,41 @@ public class ContactUs extends Helper {
 
     public String getMessage(){
         return lblConform.getText();
+    }
+
+    public RemoteWebDriver navTermsOfUse() throws InterruptedException {
+        Helper.click(driver,lnkTermsOfUse);
+        //lnkTermsOfUse.click();
+        Thread.sleep(5000);
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(1));
+        return driver;
+    }
+    public boolean IsNavigateTermsOfUse(RemoteWebDriver driver) {
+        return driver.getCurrentUrl().contains("https://www.unilever.com.br/legal/");
+    }
+
+    public RemoteWebDriver navPrivacyNotice() throws InterruptedException {
+        Helper.click(driver,lnkPrivacyNotice);
+        //lnkPrivacyNotice.click();
+        Thread.sleep(2000);
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(1));
+        return driver;
+    }
+    public boolean IsNavigatePrivacyNotice(RemoteWebDriver driver) {
+        return driver.getCurrentUrl().contains("https://www.unilevernotices.com/brazil/portuguese/privacy-notice/notice.html");
+    }
+
+    public RemoteWebDriver navCookiesNotice() throws InterruptedException {
+        Helper.click(driver,lnkCookiesNotice);
+        //lnkCookiesNotice.click();
+        Thread.sleep(2000);
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(1));
+        return driver;
+    }
+    public boolean IsNavigateCookiesNotice(RemoteWebDriver driver) {
+        return driver.getCurrentUrl().contains("https://www.unilevernotices.com/brazil/portuguese/cookie-notice/notice.html");
     }
 }

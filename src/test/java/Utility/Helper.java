@@ -79,5 +79,14 @@ public class Helper {
         }
     }
 
+    public static void downKeyOnPage(RemoteWebDriver driver, int timesToScroll) throws InterruptedException {
+        Actions action=new Actions(driver);
+        action.sendKeys(Keys.ARROW_DOWN);
+        for (int i = 0; i <timesToScroll ; i++) {
+            action.perform();
+            Thread.sleep(1000);
+        }
+    }
+
 
 }
