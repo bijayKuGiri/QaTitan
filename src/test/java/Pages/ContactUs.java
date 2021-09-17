@@ -35,7 +35,7 @@ public class ContactUs extends Helper {
     @FindBy(css = "#commentsContainer")
     WebElement txtComments;
 
-    @FindBy(css = "#contact-legalAgeConfirmationContainer")
+    @FindBy(css = "#contact-legalAgeConfirmation")
     WebElement chkAgeConfirm;
 
     @FindBy(css = "#submitButton[type='submit']")
@@ -109,13 +109,12 @@ public class ContactUs extends Helper {
             txtComments.findElement(By.tagName("textarea")).sendKeys(Comments);
         Helper.scrollUpPage(driver,1);
         Helper.downKeyOnPage(driver,2);
-        if(Comments.trim().isEmpty()) {
-            btnSubmit.submit();
+        if (!Comments.trim().isEmpty()) {
+            //Helper.click(driver, chkAgeConfirm);
+            //Helper.click(driver, btnSubmit);
+            chkAgeConfirm.click();
         }
-        else {
-            Helper.click(driver, chkAgeConfirm.findElement(By.tagName("input")));
-            Helper.click(driver, btnSubmit);
-        }
+        btnSubmit.submit();
         while (driver.findElements(By.cssSelector("svg#star.loadingIcon")).size()>0){}
         Thread.sleep(1000);
 
