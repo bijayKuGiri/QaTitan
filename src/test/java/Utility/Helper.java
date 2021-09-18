@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Helper {
 
-    private static String filePath="src/test/resources/config.xml";
+    public static String filePath="src/test/resources/config.xml";
     public static String getNodeValue(String path, String nodeName) throws ParserConfigurationException, IOException, SAXException {
         try {
             DocumentBuilderFactory dBfactory = DocumentBuilderFactory.newInstance();

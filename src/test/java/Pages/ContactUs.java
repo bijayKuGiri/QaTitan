@@ -131,11 +131,11 @@ public class ContactUs extends Helper {
     public RemoteWebDriver navTermsOfUse() throws InterruptedException {
 
         Helper.scrollDownPage(driver,3);
-        //Helper.click(driver,lnkTermsOfUse);
-        WebElement element=lblBottom.findElement(By.cssSelector("a:nth-of-type(2)"));
+        WebElement element=lblBottom.findElement(By.xpath("//a[@class='optInLinks'][2]"));
         while (!element.isDisplayed()){
             Helper.downKeyOnPage(driver,1);
         }
+        //element.click();
         Helper.click(driver,element);
         //lnkTermsOfUse.click();
         Thread.sleep(5000);
@@ -150,14 +150,14 @@ public class ContactUs extends Helper {
     }
 
     public RemoteWebDriver navPrivacyNotice() throws InterruptedException {
-//        Helper.click(driver,lnkPrivacyNotice);
         Helper.scrollDownPage(driver,3);
-        WebElement element=lblBottom.findElement(By.cssSelector("a:nth-of-type(1)"));
+        WebElement element=lblBottom.findElement(By.xpath("//a[@class='optInLinks'][1]"));
         while (!element.isDisplayed()){
             Helper.downKeyOnPage(driver,2);
         }
         Helper.click(driver,element);
         //lnkPrivacyNotice.click();
+        //element.click();
         Thread.sleep(2000);
         ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
@@ -171,13 +171,12 @@ public class ContactUs extends Helper {
 
     public RemoteWebDriver navCookiesNotice() throws InterruptedException {
         Helper.scrollDownPage(driver,3);
-        //Helper.click(driver,lnkCookiesNotice);
-        //lnkCookiesNotice.click();
-        WebElement element=lblBottom.findElement(By.cssSelector("a:nth-of-type(3)"));
+        WebElement element=lblBottom.findElement(By.xpath("//a[@class='optInLinks'][3]"));
         while (!element.isDisplayed()){
             Helper.downKeyOnPage(driver,1);
         }
         Helper.click(driver,element);
+        //element.click();
         Thread.sleep(2000);
         ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
